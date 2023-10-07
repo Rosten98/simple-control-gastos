@@ -6,75 +6,98 @@ import {
   Text,
   TextInput,
   Button,
+  TouchableOpacity,
 } from 'react-native';
+import DatePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AmountInput from '../components/AmountInput';
 
 const AddExpenseScreen = (props) => {
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
-  // Dropdown picker
+  const [amount, setAmount] = useState('0.0');
+  const [isAmountValid, setIsAmountValid] = useState(true)
+  const [description, setDescription] = useState('');
+  // Dropdown picker - Categories
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [category, setCategory] = useState(null);
   const [items, setItems] = useState([
     // {label: 'Comida', value: 'comida', icon: 'food'},
     // {label: 'Transporte', value: 'transporte', icon: 'taxi'}
     {label: 'Comida', value: 'comida', icon: ()=> <MaterialCommunityIcons name='food' size={20}/>},
-    {label: 'Transporte', value: 'transporte', icon: ()=> <MaterialCommunityIcons name='taxi' size={20}/>}
+    {label: 'Transporte', value: 'transporte', icon: ()=> <MaterialCommunityIcons name='taxi' size={20}/>},
   ]);
+  // Date picker
+  const [date, setDate] = useState(new Date())
+  const [openDP, setOpenDP] = useState(false)
 
-  const titleChangedHandler = (text) => {
-    setTitle(text);
-  };
-
-  const amountChangedHandler = (text) => {
-    setAmount(text);
+  const descriptionChangedHandler = (text) => {
+    setDescription(text);
   };
 
   const addExpenseHandler = () => {
     const expense = {
-      title: title,
+      description: description,
       amount: +amount,
       date: new Date().toISOString(),
+      category: category
     };
-    setTitle('');
-    setAmount('');
-    props.onAddExpense(expense);
+    console.log(expense)
+    setDescription('');
+    setAmount('0.0');
+    setCategory(null)
+    setDate(new Date())
+    // props.onAddExpense(expense);
   };
-
+  
   return (
     <View style={styles.form}>
-      <View style={styles.formControl}>
-        <Text style={styles.label}>Costo: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={amountChangedHandler}
-          value={amount}
-          keyboardType="numeric"
-        />
-      </View>
+      <AmountInput styles={styles} amount={amount} setAmount={setAmount} isAmountValid={isAmountValid} setIsAmountValid={setIsAmountValid}/>
       <View style={styles.formControl}>
         <Text style={styles.label}>Descripción: </Text>
         <TextInput
+          placeholder='Cena en restaurante...'
           style={styles.input}
-          onChangeText={titleChangedHandler}
-          value={title}
+          onChangeText={descriptionChangedHandler}
+          value={description}
         />
       </View>
       <View style={styles.formControl}>
         <Text style={styles.label}>Categoría: </Text>
         <DropDownPicker
+          placeholder='Elige una categoría'
+          placeholderStyle={{color:'#888'}}
           open={open}
-          value={value}
+          value={category}
           items={items}
           setOpen={setOpen}
-          setValue={setValue}
+          setValue={setCategory}
           setItems={setItems}
           style={styles.input}
+          textStyle={{fontFamily: 'WorkSans-Regular'}}
+          dropDownContainerStyle={{borderColor: '#cdcdcd'}}
+        />
+      </View>
+      <View style={styles.formControl}>
+        <Text style={styles.label}>Fecha: </Text>
+        <TouchableOpacity style={styles.input} onPress={() => setOpenDP(true)}>
+          <Text>{new Date(date).toDateString()}</Text>
+        </TouchableOpacity>
+        <DatePicker
+          modal
+          open={openDP}
+          date={date}
+          mode='date'
+          onConfirm={(date) => {
+            setOpenDP(false)
+            setDate(date)
+          }}
+          onCancel={() => {
+            setOpenDP(false)
+          }}
         />
       </View>
       <View style={styles.button}>
-        <Button title="Add Expense" onPress={addExpenseHandler}/>
+        <Button title="Agregar gasto" onPress={addExpenseHandler}/>
       </View>
     </View>
   );
@@ -92,7 +115,8 @@ const styles = StyleSheet.create({
   },
   label: {
     marginVertical: 8,
-    fontFamily: 'WorkSans-Regular',
+    fontFamily: 'WorkSans-Bold',
+    color: '#888'
   },
   input: {
     fontFamily: 'WorkSans-Regular',
