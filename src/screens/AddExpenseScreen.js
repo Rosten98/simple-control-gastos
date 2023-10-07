@@ -8,7 +8,7 @@ import {
   Button,
 } from 'react-native';
 
-export default function ExpenseForm(props) {
+const AddExpenseScreen = (props) => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
 
@@ -78,3 +78,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default AddExpenseScreen;
