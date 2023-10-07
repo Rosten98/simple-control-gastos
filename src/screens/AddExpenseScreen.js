@@ -12,6 +12,7 @@ import DatePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AmountInput from '../components/AmountInput';
+import ButtonPrimary from '../components/ButtonPrimary';
 
 const AddExpenseScreen = (props) => {
   const [amount, setAmount] = useState('0.0');
@@ -97,7 +98,8 @@ const AddExpenseScreen = (props) => {
         />
       </View>
       <View style={styles.button}>
-        <Button title="Agregar gasto" onPress={addExpenseHandler}/>
+        <ButtonPrimary text='Agregar nuevo gasto' onPressHandler={addExpenseHandler}/>
+        {/* <Button title="TEst"></Button> */}
       </View>
     </View>
   );
