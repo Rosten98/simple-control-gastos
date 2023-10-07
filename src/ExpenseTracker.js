@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import AddExpenseScreen from './src/screens/AddExpenseScreen';
+import AddExpenseScreen from './screens/AddExpenseScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ListExpensesScreen from './src/screens/ListExpensesScreen';
+import ListExpensesScreen from './screens/ListExpensesScreen';
 
 const ExpenseTracker = () => {
   const Tab = createBottomTabNavigator();
