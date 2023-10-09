@@ -47,7 +47,7 @@ export const addExpenese = async (db, expense) => {
 };
 
 export const deleteExpense = async (db, id) => {
-  const deleteQuery = `DELETE from ${tableName} where rowid = ${id}`;
+  const deleteQuery = `DELETE from ${tableName} where id = '${id}'`;
   await db.executeSql(deleteQuery);
 };
 
