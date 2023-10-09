@@ -13,6 +13,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AmountInput from '../components/AmountInput';
 import ButtonPrimary from '../components/ButtonPrimary';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import { addExpenese, createTable, getDBConnection } from '../services/db-service';
 
 const AddExpenseScreen = (props) => {
   const [amount, setAmount] = useState('0.0');
@@ -26,29 +29,40 @@ const AddExpenseScreen = (props) => {
     // {label: 'Transporte', value: 'transporte', icon: 'taxi'}
     {label: 'Comida', value: 'comida', icon: ()=> <MaterialCommunityIcons name='food' size={20}/>},
     {label: 'Transporte', value: 'transporte', icon: ()=> <MaterialCommunityIcons name='taxi' size={20}/>},
-  ]);
+  ])
   // Date picker
   const [date, setDate] = useState(new Date())
   const [openDP, setOpenDP] = useState(false)
 
   const descriptionChangedHandler = (text) => {
     setDescription(text);
-  };
+  }
 
   const addExpenseHandler = () => {
     const expense = {
+      id: uuidv4(),
       description: description,
-      amount: +amount,
+      amount: amount,
       date: new Date().toISOString(),
       category: category
     };
     console.log(expense)
+    onAddExpense(expense)
     setDescription('');
     setAmount('0.0');
     setCategory(null)
     setDate(new Date())
-    // props.onAddExpense(expense);
-  };
+  }
+
+  const onAddExpense = async (expense)=> {
+    try {
+      const db = await getDBConnection();
+      const result = await addExpenese(db, expense)
+      console.warn(result)
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
   return (
     <View style={styles.form}>
