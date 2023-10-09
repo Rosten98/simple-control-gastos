@@ -58,7 +58,7 @@ const AddExpenseScreen = (props) => {
     try {
       const db = await getDBConnection();
       const result = await addExpenese(db, expense)
-      console.warn(result)
+      console.log(result)
     } catch (error) {
       console.error(error);
     }
