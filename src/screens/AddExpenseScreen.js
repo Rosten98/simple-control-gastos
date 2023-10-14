@@ -112,7 +112,7 @@ const AddExpenseScreen = (props) => {
         />
       </View>
       <View style={styles.button}>
-        <ButtonPrimary text='Agregar nuevo gasto' onPressHandler={addExpenseHandler}/>
+        <ButtonPrimary text='Agregar gasto' onPressHandler={addExpenseHandler}/>
         {/* <Button title="TEst"></Button> */}
       </View>
     </View>

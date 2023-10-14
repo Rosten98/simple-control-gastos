@@ -11,8 +11,7 @@ const ExpenseList = (props) => {
     console.log(expense.id)
     try {
       const db = await getDBConnection()
-      const result = await deleteExpense(db, expense.id)
-      console.log(result)
+      await deleteExpense(db, expense.id)
       setExpenses(expensesList)
     } catch(error) {
       console.log(error)
@@ -47,7 +46,7 @@ const ExpenseList = (props) => {
             <Text style={styles.expenseTitle}>{item.description}</Text>
             <Text style={styles.expenseAmount}>${item.amount.toFixed(2)}</Text>
             <TouchableOpacity onPress={() => onDelete(item)}>
-              <Text>Eliminar</Text>
+              <MaterialCommunityIcons name='delete' size={16}/>
             </TouchableOpacity>
           </View>
         )}
@@ -64,21 +63,23 @@ const styles = StyleSheet.create({
   },
   expenseItem: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
+    padding: 10,
     marginBottom: 15,
-    paddingVertical: 18,
+    paddingVertical: 15,
     borderWidth: 1,
     borderColor: '#DEDEDE',
-    borderRadius: 5,
+    borderRadius: 10,
   },
   expenseTitle: {
+    flex: 3,
     fontFamily: 'WorkSans-Medium',
     fontSize: 16,
     color: '#353535'
   },
   expenseAmount: {
+    flex: 1, 
     fontFamily: 'WorkSans-Bold',
     fontSize: 16,
     color: '#06320D',
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D7F4DB',
     borderRadius: 100,
     padding: 8,
+    marginRight: 10,
   }
 });
 
