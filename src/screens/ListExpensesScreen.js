@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const ExpenseList = (props) => {
   const [expenses, setExpenses] = useState([])
+  const [refreshing, setRefreshing] = useState(false)
 
   const onDelete = async (expense) => {
     const expensesList = expenses.filter( item => item.id !== expense.id)
@@ -16,6 +17,12 @@ const ExpenseList = (props) => {
     } catch(error) {
       console.log(error)
     }
+  }
+
+  const onListRefresh = () => {
+    setRefreshing(true)
+    loadExpensesCallback()
+    setRefreshing(false)
   }
 
   const loadExpensesCallback = async () => {
@@ -39,6 +46,8 @@ const ExpenseList = (props) => {
     <View style={styles.container}>
       <FlatList
         data={expenses}
+        onRefresh={onListRefresh}
+        refreshing={refreshing}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.expenseItem}>
