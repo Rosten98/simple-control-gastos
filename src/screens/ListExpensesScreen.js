@@ -88,16 +88,17 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   expenseTitle: {
-    flex: 3,
+    flex: 4,
     fontFamily: 'WorkSans-Regular',
     fontSize: 15,
     color: '#353535',
-    marginRight: 2,
+    marginRight: 0,
   },
   expenseAmount: {
-    flex: 1, 
+    flex: 2, 
     fontFamily: 'WorkSans-SemiBold',
     color: '#06320D',
+    textAlign: 'right'
   },
   icon: {
     backgroundColor: '#D7F4DB',
