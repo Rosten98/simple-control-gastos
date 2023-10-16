@@ -4,7 +4,15 @@ import React from 'react'
 const AccountScreen = () => {
   return (
     <View>
-      <Text>AccountScreen</Text>
+      <Text>
+        - Configuraciones
+      </Text>
+      <Text>
+        - Exportar gastos
+      </Text>
+      <Text>
+        - Tema
+      </Text>
     </View>
   )
 }
