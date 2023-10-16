@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import AddExpenseScreen from './screens/AddExpenseScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,14 +11,20 @@ const ExpenseTracker = () => {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerTitleStyle: styles.headerTitle,
+          headerStyle: styles.header,
+          tabBarShowLabel: false,
+          tabBarStyle: { borderTopLeftRadius: 20, borderTopRightRadius: 20}
+        }}>
         <Tab.Screen 
           name="Inicio" 
           component={HomeScreen} 
           options={{
             tabBarLabel: 'Inicio',
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+            tabBarIcon: ({ focused, color, size }) => (
+              <MaterialCommunityIcons name="home-outline" color={ focused ? '#13561D': '#C1C1C1'} size={size} />
             ),
           }}/>
         <Tab.Screen
@@ -26,8 +32,8 @@ const ExpenseTracker = () => {
           component={ListExpensesScreen}
           options={{
             tabBarLabel: 'Gastos',
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="view-list" color={color} size={size} />
+            tabBarIcon: ({ focused, color, size }) => (
+              <MaterialCommunityIcons name="view-agenda-outline" color={ focused ? '#13561D': '#C1C1C1'} size={size} />
             ),
           }}/>  
         <Tab.Screen 
@@ -35,14 +41,27 @@ const ExpenseTracker = () => {
           component={AddExpenseScreen} 
           options={{
             tabBarLabel: 'Agregar',
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="plus-circle-outline" color={color} size={size} />
+            tabBarIcon: ({ focused, color, size }) => (
+              <MaterialCommunityIcons name="plus-circle-outline" color={ focused ? '#13561D': '#C1C1C1'} size={size} />
             ),
           }}/>
-        
       </Tab.Navigator>
     </NavigationContainer>
   )
 }
+
+const styles = StyleSheet.create({
+  headerTitle: {
+    fontFamily: 'WorkSans-SemiBold', 
+    color: '#353535',
+    fontSize: 20,
+    marginLeft: 5,
+    marginTop: 20,
+  },
+  header: {
+    shadowColor: 'white',
+    height: 70
+  }
+})
 
 export default ExpenseTracker
