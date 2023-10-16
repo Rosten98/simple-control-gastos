@@ -51,11 +51,11 @@ const ExpenseList = (props) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.expenseItem}>
-            <MaterialCommunityIcons name='food' size={20} style={styles.icon} color={'#13561D'}/>
+            <MaterialCommunityIcons name='food' size={16} style={styles.icon} color={'#13561D'}/>
             <Text style={styles.expenseTitle}>{item.description}</Text>
             <Text style={styles.expenseAmount}>${item.amount.toFixed(2)}</Text>
             <TouchableOpacity onPress={() => onDelete(item)}>
-              <MaterialCommunityIcons name='delete' size={16}/>
+              <MaterialCommunityIcons name='delete' size={14}/>
             </TouchableOpacity>
           </View>
         )}
@@ -68,29 +68,37 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    padding: 20,
+    padding: 10,
   },
   expenseItem: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
-    marginBottom: 15,
+    margin: 10,
+    marginBottom: 7,
     paddingVertical: 15,
-    borderWidth: 1,
-    borderColor: '#DEDEDE',
     borderRadius: 10,
+    // Shadow - Android
+    backgroundColor: '#fff',
+    shadowColor: '#aaa',
+    elevation: 4,
+    //Shadow - iOS
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   expenseTitle: {
     flex: 3,
-    fontFamily: 'WorkSans-Medium',
-    fontSize: 16,
-    color: '#353535'
+    fontFamily: 'WorkSans-Regular',
+    fontSize: 15,
+    color: '#353535',
+    marginRight: 2,
   },
   expenseAmount: {
     flex: 1, 
-    fontFamily: 'WorkSans-Bold',
-    fontSize: 16,
+    fontFamily: 'WorkSans-SemiBold',
+    // fontSize: 16,
     color: '#06320D',
   },
   icon: {
