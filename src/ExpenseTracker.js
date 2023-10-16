@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ListExpensesScreen from './screens/ListExpensesScreen';
 import HomeScreen from './screens/HomeScreen';
+import AccountScreen from './screens/AccountScreen';
 
 const ExpenseTracker = () => {
   const Tab = createBottomTabNavigator();
@@ -43,6 +44,15 @@ const ExpenseTracker = () => {
             tabBarLabel: 'Agregar',
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons name="plus-circle-outline" color={ focused ? '#13561D': '#C1C1C1'} size={size} />
+            ),
+          }}/>
+        <Tab.Screen 
+          name="Cuenta" 
+          component={AccountScreen} 
+          options={{
+            tabBarLabel: 'Cuenta',
+            tabBarIcon: ({ focused, color, size }) => (
+              <MaterialCommunityIcons name="account-outline" color={ focused ? '#13561D': '#C1C1C1'} size={size} />
             ),
           }}/>
       </Tab.Navigator>
