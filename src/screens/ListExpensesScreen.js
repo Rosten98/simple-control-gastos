@@ -51,7 +51,7 @@ const ExpenseList = (props) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.expenseItem}>
-            <MaterialCommunityIcons name='food' size={16} style={styles.icon} color={'#13561D'}/>
+            <MaterialCommunityIcons name='food-outline' size={16} style={styles.icon} color={'#13561D'}/>
             <Text style={styles.expenseTitle}>{item.description}</Text>
             <Text style={styles.expenseAmount}>${item.amount.toFixed(2)}</Text>
             <TouchableOpacity onPress={() => onDelete(item)}>
@@ -72,17 +72,16 @@ const styles = StyleSheet.create({
   },
   expenseItem: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    marginBottom: 7,
+    marginBottom: 5,
     paddingVertical: 15,
     borderRadius: 10,
     // Shadow - Android
     backgroundColor: '#fff',
-    shadowColor: '#aaa',
-    elevation: 4,
+    shadowColor: '#999',
+    elevation: 3,
     //Shadow - iOS
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
   expenseAmount: {
     flex: 1, 
     fontFamily: 'WorkSans-SemiBold',
-    // fontSize: 16,
     color: '#06320D',
   },
   icon: {
