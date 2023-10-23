@@ -17,7 +17,6 @@ const ExpenseTracker = () => {
           headerTitleStyle: styles.headerTitle,
           headerStyle: styles.header,
           tabBarShowLabel: false,
-          tabBarStyle: { borderTopLeftRadius: 20, borderTopRightRadius: 20}
         }}>
         <Tab.Screen 
           name="Inicio" 

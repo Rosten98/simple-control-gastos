@@ -73,24 +73,24 @@ const styles = StyleSheet.create({
   expenseItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
     margin: 10,
     marginBottom: 5,
-    paddingVertical: 15,
+    paddingVertical: 25,
+    paddingHorizontal: 15,
     borderRadius: 10,
     // Shadow - Android
     backgroundColor: '#fff',
     shadowColor: '#999',
     elevation: 3,
     //Shadow - iOS
-    shadowOffset: {width: -2, height: 4},
+    shadowOffset: {width: -1, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
   expenseTitle: {
     flex: 4,
     fontFamily: 'WorkSans-Regular',
-    fontSize: 15,
+    fontSize: 16,
     color: '#353535',
     marginRight: 0,
   },

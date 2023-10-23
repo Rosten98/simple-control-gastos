@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   form: {
     padding: 20,
     backgroundColor: 'white',
-    height: '100%'
+    height: '100%',
   },
   formControl: {
     width: '100%',
@@ -132,12 +132,14 @@ const styles = StyleSheet.create({
   label: {
     marginVertical: 8,
     fontFamily: 'WorkSans-Bold',
-    color: '#888'
+    color: '#888',
+    fontSize: 16
   },
   input: {
     fontFamily: 'WorkSans-Regular',
+    fontSize: 16,
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingVertical: 18,
     borderColor: '#CDCDCD',
     borderWidth: 1,
     borderRadius: 10,

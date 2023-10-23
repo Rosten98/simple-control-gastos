@@ -15,13 +15,14 @@ const ButtonPrimary = ({text, onPressHandler}) => {
 
 const styles = StyleSheet.create({
   button: {
-    padding: 12,
+    padding: 18,
     borderRadius: 5
   },
   buttonPressed: {backgroundColor: 'rgba(19,86,29,.81)'},
   buttonUnPressed: {backgroundColor: '#13561D'},
   text: {
     fontFamily: 'WorkSans-Regular',
+    fontSize: 16,
     color: 'white',
     textAlign: 'center'
   }
